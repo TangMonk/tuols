@@ -52,3 +52,9 @@ now support type are:
 - hidden
 
 
+## todos
+
+1. optional edit page
+2. file upload
+3. search component should support multiple file search
+
