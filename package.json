@@ -1,20 +1,24 @@
 {
-  "name": "generator-tuols",
+  "name": "tuols",
   "version": "1.0.0",
-  "description": "admin generator for antd-design",
-  "main": "app/index.js",
-  "files": [
-    "admin",
-    "api"
-  ],
+  "description": "admin generator for antd-design and hapi",
+  "bin": {
+    "tuols": "./bin/tuols"
+  },
   "author": "wytwyt02@gmail.com",
-  "keywords": "yeoman-generator",
+  "keywords": "generator",
   "license": "MIT",
   "dependencies": {
+    "commander": "^2.9.0",
     "joi": "^10.2.2",
     "mkdirp": "^0.5.1",
     "shelljs": "^0.7.7",
     "username": "^2.3.0",
+    "win-spawn": "^2.0.0",
+    "yeoman-environment": "^1.6.6",
     "yeoman-generator": "^1.1.1"
+  },
+  "engines": {
+    "node": ">=7.6.0"
   }
 }
