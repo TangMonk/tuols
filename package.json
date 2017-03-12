@@ -1,0 +1,20 @@
+{
+  "name": "generator-tuols",
+  "version": "1.0.0",
+  "description": "admin generator for antd-design",
+  "main": "app/index.js",
+  "files": [
+    "admin",
+    "api"
+  ],
+  "author": "wytwyt02@gmail.com",
+  "keywords": "yeoman-generator",
+  "license": "MIT",
+  "dependencies": {
+    "joi": "^10.2.2",
+    "mkdirp": "^0.5.1",
+    "shelljs": "^0.7.7",
+    "username": "^2.3.0",
+    "yeoman-generator": "^1.1.1"
+  }
+}
