@@ -1,10 +1,16 @@
-# productive generator for node js CRUD application
+# Productive generator for Node.js CRUD application, make CRUD happy and fun!
 
 ## install
 
 ```
 npm install -g tuols
 ```
+
+## pre-requirement
+
+node > 7.6 & PostgreSQL
+
+and you should know about `hapi` and `react`
 
 ## usage
 
@@ -14,34 +20,29 @@ npm install -g tuols
 tuols init
 ```
 
-### creating model curd api and admin curd page
+run react application
+```
+$ cd api/
+$ npm run dev
+```
+
+run api server
+
+```
+$ cd api/
+$ node server
+```
+
+### creating model curd api
 
 ```
 tuols g model user name:string,phone:string,password_hash:string
 ```
 
-only create model
+### creating model admin page with specify ui type
 
 ```
-tuols model user name:string,phone:string,password_hash:string --only-model
-```
-
-only create api
-
-```
-tuols user name:string,phone:string,password_hash:string --only-api
-```
-
-only create admin
-
-```
-tuols user name:string,phone:string,password_hash:string --only-admin
-```
-
-### specify admin column type
-
-```
-tuols user name:string,phone:select,password_hash:string --only-admin
+tuols g view user name:string,phone:string,password_hash:string
 ```
 
 now support type are:
@@ -49,3 +50,5 @@ now support type are:
 - input
 - select
 - hidden
+
+

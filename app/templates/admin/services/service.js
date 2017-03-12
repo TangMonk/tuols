@@ -1,29 +1,28 @@
 import { request } from '../utils'
 
 export async function query (params) {
-  return request('/api/users', {
+  return request('/<%= name %>', {
     method: 'get',
-    data: params
+    query: params
   })
 }
 
 export async function create (params) {
-  return request('/api/users', {
+  return request('/<%= name %>', {
     method: 'post',
-    data: params
+    body: params
   })
 }
 
 export async function remove (params) {
-  return request('/api/users', {
-    method: 'delete',
-    data: params
+  return request(`/<%= name %>/${params}`, {
+    method: 'delete'
   })
 }
 
 export async function update (params) {
-  return request('/api/users', {
+  return request(`/<%= name %>/${params.id}`, {
     method: 'put',
-    data: params
+    body: params.body
   })
 }

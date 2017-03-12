@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+
+program
+  .option('-n --name', 'name of the model')
+  .option('-a --attributes', 'Specify model attributes')
+  .parse(process.argv);
+
+require('../src/generate-view')(program);

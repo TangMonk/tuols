@@ -28,13 +28,13 @@ export default async function request(url, options) {
     delete options.query
   }
   const token = localStorage.getItem('token')
-  
+
   options.headers = {
     'token': token,
     'Content-Type': 'application/json'
   }
   const response = await fetch(`${API_URL}${url}`, options);
-  // checkStatus(response);
+  checkStatus(response);
 
   const data = await response.json();
 

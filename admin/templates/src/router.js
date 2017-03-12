@@ -33,15 +33,6 @@ export default function ({history, app}) {
           }
         },
         {
-          path: 'rule',
-          name: 'rule',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              cb(null, require('./routes/rule/index'))
-            }, 'rule')
-          }
-        }
-        , {
           path: 'users',
           name: 'users',
           getComponent (nextState, cb) {
@@ -49,49 +40,6 @@ export default function ({history, app}) {
               registerModel(app, require('./models/users'))
               cb(null, require('./routes/users'))
             }, 'users')
-          }
-        }, {
-          path: 'groups',
-          name: 'groups',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/groups'))
-              cb(null, require('./routes/groups'))
-            }, 'groups')
-          }
-        }, {
-          path: 'rebate/histories',
-          name: 'rebate/histories',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/rebate/histories'))
-              cb(null, require('./routes/rebate/histories'))
-            }, 'histories')
-          }
-        }, {
-          path: 'rebate/levelHistories',
-          name: 'rebate/levelHistories',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/rebate/levelHistories'))
-              cb(null, require('./routes/rebate/levelHistories'))
-            }, 'levelHistories')
-          }
-        }, {
-          path: 'ui/ico',
-          name: 'ui/ico',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              cb(null, require('./routes/ui/ico'))
-            }, 'ui-ico')
-          }
-        }, {
-          path: 'ui/search',
-          name: 'ui/search',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              cb(null, require('./routes/ui/search'))
-            }, 'ui-search')
           }
         }, {
           path: '*',

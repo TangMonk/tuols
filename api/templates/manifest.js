@@ -74,6 +74,19 @@ const manifest = {
       plugin: './server/plugins/admin'
     },
     {
+      plugin: {
+        register: 'hapi-cors',
+        options: {
+          origins: ['*'],
+          allowCredentials: 'true',
+          exposeHeaders: ['content-type', 'content-length'],
+          maxAge: 600,
+          methods: ['POST, GET, OPTIONS','DELETE','PUT'],
+          headers: ['Accept', 'Content-Type', 'Authorization','token']
+        }
+      }
+    },
+    {
       development: {
         plugin: {
           register: 'tv',

@@ -11,8 +11,8 @@ module.exports = (server) => {
         query: {
           where: Joi.string().optional(),
           order: Joi.string().optional(),
-          limit: Joi.string().optional(),
-          offset: Joi.string().optional(),
+          pageSize: Joi.number().optional().default(20),
+          page: Joi.number().optional().default(1),
           include: Joi.string().optional()
         }
       }
@@ -93,21 +93,26 @@ async function getList(request, reply){
   if(request.query.order){
     query_payload.order = JSON.parse(request.query.order)
   }
-  if(request.query.limit){
-    query_payload.limit = JSON.parse(request.query.limit)
+  if(request.query.pageSize){
+    query_payload.limit = request.query.pageSize
   }
-  if(request.query.offset){
-    query_payload.offset = JSON.parse(request.query.offset)
+  if(request.query.page){
+    query_payload.offset = request.query.pageSize * (request.query.page - 1)
   }
   if(request.query.include){
     query_payload.include = JSON.parse(request.query.include)
   }
 
+  if(!query_payload.order){
+    query_payload.order = [['createdAt', 'DESC']]
+  }
+
   const data = await models.<%= name %>.findAll(query_payload)
-  reply(data)
+  const total = await models.<%= name %>.count()
+  reply({data, page: {total, current: request.query.page, pageSize: request.query.pageSize}})
 }
 
-async function get(request, reply){
+async function get(request, reply) {
   const data = await models.<%= name %>.findById(request.params.id)
   reply(data)
 }
@@ -119,10 +124,10 @@ async function create(request, reply){
 
 async function Delete(request, reply){
   const data = await models.<%= name %>.destroy({where: {id: request.params.id}})
-  reply({message: 'success'})
+  reply(data)
 }
 
 async function update(request, reply){
   const data = await models.<%= name %>.update(request.payload, {where: {id: request.params.id}, returning: true})
-  reply(data[1][0])
+  reply(data)
 }
