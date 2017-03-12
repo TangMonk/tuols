@@ -58,3 +58,5 @@ now support type are:
 2. file upload
 3. search component should support multiple file search
 
+
+> I am a freelancer for web and mobile development, If have some good ideas, please contact me [wytwyt02@gmail.com](mailto:wytwyt02@gmail.com)
