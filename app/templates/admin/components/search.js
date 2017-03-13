@@ -29,7 +29,7 @@ const search = ({
     <%_ }) _%>
     ],
     selectProps: {
-      defaultValue: field || 'name'
+      defaultValue: field || '<%= attributes[0][0] %>'
     },
     onSearch: (value) => {
       onSearch(value)

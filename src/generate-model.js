@@ -10,7 +10,7 @@ function generete(program){
   const env = yeoman.createEnv();
   env.register(require.resolve('../app/generate-model'), 'tuols:generate-model');
 
-  env.run('tuols:generate-model', {name: name, attributes: attributes});
+  env.run('tuols:generate-model', {name: name, attributes: attributes, 'skip-migration': program.skipMigration});
 }
 
 module.exports = generete

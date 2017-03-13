@@ -32,6 +32,7 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.30.1",
     "tv": "^6.1.0",
+    "uuid": "^3.0.1",
     "vision": "4.x.x",
     "visionary": "6.x.x",
     "hapi-cors": "Skipper1992/hapi-cors"

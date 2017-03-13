@@ -12,6 +12,7 @@ module.exports = class extends Generator {
     super(args, opts);
     this.option('name', {required: true, type: String})
     this.option('attributes', {required: true, type: String})
+    this.option('skip-migration', {required: true, type: Boolean})
   }
 
   model(){
@@ -39,9 +40,11 @@ module.exports = class extends Generator {
     })
     const name = this.options['name']
 
-    shell.cd(Path.join(path, 'api'))
-    shell.exec(`./node_modules/.bin/sequelize model:create --name ${this.options['name']} --attributes ${this.options['attributes']}`)
+    if(!this.options['skip-migration']){
+      shell.cd(Path.join(path, 'api'))
+      shell.exec(`./node_modules/.bin/sequelize model:create --name ${this.options['name']} --attributes ${this.options['attributes']}`)
+    }
 
-    this.fs.copyTpl(Path.join(source, 'curd.js'), Path.join(path, `api/server/api/${this.options['name']}.js`), {attributes, name}, {}, {globOptions: {dot: true}});
+    this.fs.copyTpl(Path.join(source, 'curd.js'), Path.join(path, `api/server/api/admin/${this.options['name']}s.js`), {attributes, name}, {}, {globOptions: {dot: true}});
   }
 };

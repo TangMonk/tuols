@@ -1,12 +1,12 @@
-const models = require('../models')
+const models = require('../../models')
 const Joi = require('joi')
 
 module.exports = (server) => {
   server.route({
     method: 'GET',
-    path: '/<%= name %>',
+    path: '/admin/<%= name %>s',
     config: {
-      tags: ['api', '<%= name %>'],
+      tags: ['api', '<%= name %>', 'admin'],
       validate: {
         query: {
           where: Joi.string().optional(),
@@ -22,9 +22,9 @@ module.exports = (server) => {
 
   server.route({
     method: 'GET',
-    path: '/<%= name %>/{id}',
+    path: '/admin/<%= name %>s/{id}',
     config: {
-      tags: ['api', '<%= name %>'],
+      tags: ['api', '<%= name %>', 'admin'],
       validate: {
         params: {
           id: Joi.string().optional()
@@ -36,9 +36,9 @@ module.exports = (server) => {
 
   server.route({
     method: 'POST',
-    path: '/<%= name %>',
+    path: '/admin/<%= name %>s',
     config: {
-      tags: ['api', '<%= name %>'],
+      tags: ['api', '<%= name %>', 'admin'],
       validate: {
         payload: {
           <%_ attributes.forEach(attribute => { _%>
@@ -52,9 +52,9 @@ module.exports = (server) => {
 
   server.route({
     method: 'DELETE',
-    path: '/<%= name %>/{id}',
+    path: '/admin/<%= name %>s/{id}',
     config: {
-      tags: ['api', '<%= name %>'],
+      tags: ['api', '<%= name %>', 'admin'],
       validate: {
         params: {
           id: Joi.number().required()
@@ -66,9 +66,9 @@ module.exports = (server) => {
 
   server.route({
     method: 'PUT',
-    path: '/<%= name %>/{id}',
+    path: '/admin/<%= name %>s/{id}',
     config: {
-      tags: ['api', '<%= name %>'],
+      tags: ['api', '<%= name %>', 'admin'],
       validate: {
         params: {
           id: Joi.number().integer().required()
@@ -107,27 +107,46 @@ async function getList(request, reply){
     query_payload.order = [['createdAt', 'DESC']]
   }
 
-  const data = await models.<%= name %>.findAll(query_payload)
-  const total = await models.<%= name %>.count()
+  const data = await models.<%= name %>s.findAll(query_payload)
+  const total = await models.<%= name %>s.count()
   reply({data, page: {total, current: request.query.page, pageSize: request.query.pageSize}})
 }
 
 async function get(request, reply) {
-  const data = await models.<%= name %>.findById(request.params.id)
+  const data = await models.<%= name %>s.findById(request.params.id)
   reply(data)
 }
 
 async function create(request, reply){
-  const data = await models.<%= name %>.create(request.payload)
-  reply(data)
+  if(request.payload.password_hash){
+    const bcrypt = require('bcrypt')
+    const salt = bcrypt.genSaltSync()
+    request.payload.password_hash = bcrypt.hashSync(request.payload.password_hash, salt)
+  }
+  try{
+    const data = await models.<%= name %>s.create(request.payload)
+    reply(data)
+  }catch(error){
+    reply(error)
+  }
 }
 
 async function Delete(request, reply){
-  const data = await models.<%= name %>.destroy({where: {id: request.params.id}})
+  const data = await models.<%= name %>s.destroy({where: {id: request.params.id}})
   reply(data)
 }
 
 async function update(request, reply){
-  const data = await models.<%= name %>.update(request.payload, {where: {id: request.params.id}, returning: true})
-  reply(data)
+  if(request.payload.password_hash){
+    const bcrypt = require('bcrypt')
+    const salt = bcrypt.genSaltSync()
+    request.payload.password_hash = bcrypt.hashSync(request.payload.password_hash, salt)
+  }
+
+  try{
+    const data = await models.<%= name %>s.update(request.payload, {where: {id: request.params.id}, returning: true})
+    reply(data)
+  }catch(error){
+    reply(error)
+  }
 }

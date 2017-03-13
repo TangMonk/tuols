@@ -14,7 +14,10 @@ const manifest = {
   server: {
     connections: {
       routes: {
-        security: true
+        security: true,
+        files: {
+          relativeTo: Path.join(__dirname, 'public')
+        }
       }
     }
   },

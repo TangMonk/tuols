@@ -27,12 +27,14 @@ function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, on
       title: '<%= attribute[0] %>',
       dataIndex: '<%= attribute[0] %>',
       key: '<%= attribute[0] %>',
+      width: 100
     },
   <%_ }) _%>
     {
       title: '创建时间',
       dataIndex: 'createdAt',
       key: 'createdAt',
+      width: 100,
       render: (text, record) => {
         return moment(text).format('YYYY-MM-DD HH:mm')
       }
@@ -41,6 +43,7 @@ function list ({ loading, dataSource, pagination, onPageChange, onDeleteItem, on
       title: '更新时间',
       dataIndex: 'createdAt',
       key: 'updatedAt',
+      width: 100,
       render: (text, record) => {
         return moment(text).format('YYYY-MM-DD HH:mm')
       }

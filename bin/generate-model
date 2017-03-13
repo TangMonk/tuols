@@ -3,8 +3,8 @@
 const program = require('commander');
 
 program
-  .option('-n --name', 'name of the model')
-  .option('-a --attributes', 'Specify model attributes')
+  .arguments('<name> <attributes>')
+  .option('-s --skip-migration', 'skip generate migration file')
   .parse(process.argv);
 
 require('../src/generate-model')(program);

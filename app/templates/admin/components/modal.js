@@ -50,7 +50,7 @@ const modal = ({
           <%_ attributes.forEach(attribute => { _%>
           <FormItem label='<%= attribute[0] %>：' hasFeedback {...formItemLayout}>
             {getFieldDecorator('<%= attribute[0] %>', {
-              initialValue: item.name,
+              initialValue: item.<%= attribute[0] %>,
               rules: [
                 {
                   required: true,
