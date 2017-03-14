@@ -11,7 +11,7 @@ export default {
     currentItem: {},
     modalVisible: false,
     modalType: 'create',
-    isMotion: localStorage.getItem('antdAdminUserIsMotion') === 'true',
+    isMotion: false,
     pagination: {
       showSizeChanger: true,
       showQuickJumper: true,
