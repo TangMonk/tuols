@@ -113,8 +113,7 @@ async function getList(request, reply){
   }
 
   const data = await models.<%= name %>s.findAll(query_payload)
-  const total = await models.<%= name %>s.count()
-  reply({data, page: {total, current: request.query.page, pageSize: request.query.pageSize}})
+  reply({data, page: {data.length, current: request.query.page, pageSize: request.query.pageSize}})
 }
 
 async function get(request, reply) {
