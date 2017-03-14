@@ -7,6 +7,7 @@ module.exports = (server) => {
     path: '/admin/<%= name %>s',
     config: {
       tags: ['api', '<%= name %>', 'admin'],
+      auth: 'admin',
       validate: {
         query: {
           where: Joi.string().optional(),
@@ -24,6 +25,7 @@ module.exports = (server) => {
     method: 'GET',
     path: '/admin/<%= name %>s/{id}',
     config: {
+      auth: 'admin',
       tags: ['api', '<%= name %>', 'admin'],
       validate: {
         params: {
@@ -38,6 +40,7 @@ module.exports = (server) => {
     method: 'POST',
     path: '/admin/<%= name %>s',
     config: {
+      auth: 'admin',
       tags: ['api', '<%= name %>', 'admin'],
       validate: {
         payload: {
@@ -54,6 +57,7 @@ module.exports = (server) => {
     method: 'DELETE',
     path: '/admin/<%= name %>s/{id}',
     config: {
+      auth: 'admin',
       tags: ['api', '<%= name %>', 'admin'],
       validate: {
         params: {
@@ -69,6 +73,7 @@ module.exports = (server) => {
     path: '/admin/<%= name %>s/{id}',
     config: {
       tags: ['api', '<%= name %>', 'admin'],
+      auth: 'admin',
       validate: {
         params: {
           id: Joi.number().integer().required()

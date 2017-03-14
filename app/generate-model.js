@@ -32,9 +32,12 @@ module.exports = class extends Generator {
       if(type === 'integer'){
         type = 'number().integer().optional(),'
       }else if(type === 'float'){
-        type = 'number().float().optional(),'
-      }else{
-        type = `${type}().optional(),`
+        type = 'number().precision(2).optional(),'
+      }else if(type === 'boolean'){
+        type = 'boolean().optional(),'
+      }
+      else{
+        type = `string().optional(),`
       }
       return [column, type]
     })

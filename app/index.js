@@ -52,6 +52,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(Path.join(source, '../../admin/templates/') , Path.join(path, 'admin'), this.config, {}, {globOptions: {dot: true, ignore: ['**/*.png', '**/*.gif', '**/*.jpg']}});
     this.fs.copy(Path.join(source, '../../admin/templates/**/*.*(jpg|gif|jpg)') , Path.join(path, 'admin'), this.config, {globOptions: {dot: true}});
     this.fs.copyTpl(Path.join(source, '../../api/templates/'), Path.join(path, 'api'), this.config, {}, {globOptions: {dot: true}});
+    this.fs.copy(Path.join(source, '.gitignore') , `${path}/.gitignore`);
   }
 
 };

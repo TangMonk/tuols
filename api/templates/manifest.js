@@ -3,6 +3,7 @@
 const Confidence = require('confidence')
 const Config = require('./config')
 const heredoc = require('heredoc')
+const Path = require('path')
 
 const default_criteria = {
   env: process.env.NODE_ENV
@@ -110,6 +111,9 @@ const manifest = {
         }
       },
       $filter: 'env'
+    },
+    {
+      plugin: './server/file'
     },
     {
       plugin: './server/web/index'

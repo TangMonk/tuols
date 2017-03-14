@@ -44,7 +44,7 @@ function upload(request, reply) {
   if (data.file) {
     const ext = Path.extname(data.file.hapi.filename)
     const filename = uuidV4()
-    const path = `${__dirname}/../../public/uploads/${filename}${ext}`
+    const path = `${__dirname}/../public/uploads/${filename}${ext}`
     const file = fs.createWriteStream(path)
 
     file.on('error', (err) => {
@@ -56,7 +56,7 @@ function upload(request, reply) {
     data.file.on('end', (err) => {
       if (err) return reply(err)
 
-      reply({ url: `/public/uploads/${filename}` })
+      reply({ url: `/uploads/${filename}${ext}` })
     })
   }
 }
