@@ -15,6 +15,9 @@ module.exports = (server) => {
           pageSize: Joi.number().optional().default(20),
           page: Joi.number().optional().default(1),
           include: Joi.string().optional()
+        },
+        options: {
+          stripUnknown: true
         }
       }
     },
@@ -30,6 +33,9 @@ module.exports = (server) => {
       validate: {
         params: {
           id: Joi.string().optional()
+        },
+        options: {
+          stripUnknown: true
         }
       }
     },
@@ -47,6 +53,9 @@ module.exports = (server) => {
           <%_ attributes.forEach(attribute => { _%>
           <%= `${attribute[0]}: Joi.${attribute[1]}` %>
           <%_})_%>
+        },
+        options: {
+          stripUnknown: true
         }
       }
     },
@@ -62,6 +71,9 @@ module.exports = (server) => {
       validate: {
         params: {
           id: Joi.number().required()
+        },
+        options: {
+          stripUnknown: true
         }
       }
     },
@@ -82,6 +94,9 @@ module.exports = (server) => {
           <%_ attributes.forEach(attribute => { _%>
           <%= `${attribute[0]}: Joi.${attribute[1]}` %>
           <%_})_%>
+        },
+        options: {
+          stripUnknown: true
         }
       }
     },
