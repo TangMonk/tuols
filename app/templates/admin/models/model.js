@@ -1,9 +1,9 @@
-import { create, remove, update, query } from '../services/<%= name %>s'
+import { create, remove, update, query } from '../services/<%= name %>'
 import { parse } from 'qs'
 
 export default {
 
-  namespace: '<%= name %>s',
+  namespace: '<%= name %>',
 
   state: {
     list: [],
@@ -24,7 +24,7 @@ export default {
   subscriptions: {
     setup ({ dispatch, history }) {
       history.listen(location => {
-        if (location.pathname === '/<%= name %>s') {
+        if (location.pathname === '/<%= name %>') {
           dispatch({
             type: 'query',
             payload: location.query
@@ -57,7 +57,7 @@ export default {
       yield put({ type: 'showLoading' })
       try {
         yield call(remove, payload)
-        const state = yield select(state => state.<%= name %>s);
+        const state = yield select(state => state.<%= name %>);
         const list = state.list.filter( o => o.id != payload )
         yield put({
           type: 'updateState',
@@ -79,7 +79,7 @@ export default {
       yield put({ type: 'hideModal' })
       yield put({ type: 'showLoading' })
       try {
-        const state = yield select(state => state.<%= name %>s);
+        const state = yield select(state => state.<%= name %>);
         const data = yield call(create, payload)
         yield put({
           type: 'updateState',
@@ -101,11 +101,11 @@ export default {
     *update ({ payload }, { select, call, put }) {
       yield put({ type: 'hideModal' })
       yield put({ type: 'showLoading' })
-      const id = yield select(({ <%= name %>s }) => <%= name %>s.currentItem.id)
+      const id = yield select(({ <%= name %> }) => <%= name %>.currentItem.id)
       const newUser = { body: payload, id }
       try {
         const data = yield call(update, newUser)
-        const state = yield select(state => state.<%= name %>s);
+        const state = yield select(state => state.<%= name %>);
         const index = state.list.findIndex( o => o.id === id )
         state.list[index] = data[1][0]
         yield put({

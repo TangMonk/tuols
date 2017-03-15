@@ -4,7 +4,7 @@ const Joi = require('joi')
 module.exports = (server) => {
   server.route({
     method: 'GET',
-    path: '/admin/<%= name %>s',
+    path: '/admin/<%= name %>',
     config: {
       tags: ['api', '<%= name %>', 'admin'],
       auth: 'admin',
@@ -26,7 +26,7 @@ module.exports = (server) => {
 
   server.route({
     method: 'GET',
-    path: '/admin/<%= name %>s/{id}',
+    path: '/admin/<%= name %>/{id}',
     config: {
       auth: 'admin',
       tags: ['api', '<%= name %>', 'admin'],
@@ -44,7 +44,7 @@ module.exports = (server) => {
 
   server.route({
     method: 'POST',
-    path: '/admin/<%= name %>s',
+    path: '/admin/<%= name %>',
     config: {
       auth: 'admin',
       tags: ['api', '<%= name %>', 'admin'],
@@ -64,7 +64,7 @@ module.exports = (server) => {
 
   server.route({
     method: 'DELETE',
-    path: '/admin/<%= name %>s/{id}',
+    path: '/admin/<%= name %>/{id}',
     config: {
       auth: 'admin',
       tags: ['api', '<%= name %>', 'admin'],
@@ -82,7 +82,7 @@ module.exports = (server) => {
 
   server.route({
     method: 'PUT',
-    path: '/admin/<%= name %>s/{id}',
+    path: '/admin/<%= name %>/{id}',
     config: {
       tags: ['api', '<%= name %>', 'admin'],
       auth: 'admin',
@@ -127,15 +127,15 @@ async function getList(request, reply){
     query_payload.order = [['createdAt', 'DESC']]
   }
 
-  const data = await models.<%= name %>s.findAll(query_payload)
+  const data = await models.<%= name %>.findAll(query_payload)
   delete query_payload.limit
   delete query_payload.offset
-  const total = await models.<%= name %>s.count(query_payload)
+  const total = await models.<%= name %>.count(query_payload)
   reply({data, page: {total: total, current: request.query.page, pageSize: request.query.pageSize}})
 }
 
 async function get(request, reply) {
-  const data = await models.<%= name %>s.findById(request.params.id)
+  const data = await models.<%= name %>.findById(request.params.id)
   reply(data)
 }
 
@@ -146,7 +146,7 @@ async function create(request, reply){
     request.payload.password_hash = bcrypt.hashSync(request.payload.password_hash, salt)
   }
   try{
-    const data = await models.<%= name %>s.create(request.payload)
+    const data = await models.<%= name %>.create(request.payload)
     reply(data)
   }catch(error){
     reply(error)
@@ -154,7 +154,7 @@ async function create(request, reply){
 }
 
 async function Delete(request, reply){
-  const data = await models.<%= name %>s.destroy({where: {id: request.params.id}})
+  const data = await models.<%= name %>.destroy({where: {id: request.params.id}})
   reply(data)
 }
 
@@ -166,7 +166,7 @@ async function update(request, reply){
   }
 
   try{
-    const data = await models.<%= name %>s.update(request.payload, {where: {id: request.params.id}, returning: true})
+    const data = await models.<%= name %>.update(request.payload, {where: {id: request.params.id}, returning: true})
     reply(data)
   }catch(error){
     reply(error)

@@ -1,6 +1,6 @@
 {
   "name": "tuols",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "admin generator for antd-design and hapi",
   "bin": {
     "tuols": "./bin/tuols"

@@ -17,20 +17,20 @@ function generete(program){
       1. at 'admin/src/router.js', append follwing:
 
       {
-        path: '${name}s',
-        name: '${name}s',
+        path: '${name}',
+        name: '${name}',
         getComponent (nextState, cb) {
           require.ensure([], require => {
-            registerModel(app, require('./models/${name}s'))
-            cb(null, require('./routes/${name}s'))
-          }, '${name}s')
+            registerModel(app, require('./models/${name}'))
+            cb(null, require('./routes/${name}'))
+          }, '${name}')
         }
       }
 
       2. at 'admin/src/utils/menu.js', append follwing:
 
       {
-        key: '${name}s',
+        key: '${name}',
         name: '${name}管理',
         icon: 'user'
       }

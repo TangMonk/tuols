@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
 import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
-import <%= name[0].toUpperCase() + name.slice(1) %>List from '../components/<%= name %>s/list'
-import <%= name[0].toUpperCase() + name.slice(1) %>Search from '../components/<%= name %>s/search'
-import <%= name[0].toUpperCase() + name.slice(1) %>Modal from '../components/<%= name %>s/modal'
+import <%= name[0].toUpperCase() + name.slice(1) %>List from '../components/<%= name %>/list'
+import <%= name[0].toUpperCase() + name.slice(1) %>Search from '../components/<%= name %>/search'
+import <%= name[0].toUpperCase() + name.slice(1) %>Modal from '../components/<%= name %>/modal'
 
-function <%= name[0].toUpperCase() + name.slice(1) %>s ({ location, dispatch, <%= name %>s }) {
-  const { loading, list, pagination, currentItem, modalVisible, modalType, isMotion } = <%= name %>s
+function <%= name[0].toUpperCase() + name.slice(1) %> ({ location, dispatch, <%= name %> }) {
+  const { loading, list, pagination, currentItem, modalVisible, modalType, isMotion } = <%= name %>
   const { field, keyword } = location.query
 
   const <%= name %>ModalProps = {
@@ -15,13 +15,13 @@ function <%= name[0].toUpperCase() + name.slice(1) %>s ({ location, dispatch, <%
     visible: modalVisible,
     onOk (data) {
       dispatch({
-        type: `<%= name %>s/${modalType}`,
+        type: `<%= name %>/${modalType}`,
         payload: data
       })
     },
     onCancel () {
       dispatch({
-        type: '<%= name %>s/hideModal'
+        type: '<%= name %>/hideModal'
       })
     }
   }
@@ -45,13 +45,13 @@ function <%= name[0].toUpperCase() + name.slice(1) %>s ({ location, dispatch, <%
     },
     onDeleteItem (id) {
       dispatch({
-        type: '<%= name %>s/delete',
+        type: '<%= name %>/delete',
         payload: id
       })
     },
     onEditItem (item) {
       dispatch({
-        type: '<%= name %>s/showModal',
+        type: '<%= name %>/showModal',
         payload: {
           modalType: 'update',
           currentItem: item
@@ -66,24 +66,24 @@ function <%= name[0].toUpperCase() + name.slice(1) %>s ({ location, dispatch, <%
     isMotion,
     onSearch (fieldsValue) {
       fieldsValue.keyword.length ? dispatch(routerRedux.push({
-        pathname: '/<%= name %>s',
+        pathname: '/<%= name %>',
         query: {
           where: JSON.stringify({[fieldsValue.field]: {$like: `%${fieldsValue.keyword}%`}})
         }
       })) : dispatch(routerRedux.push({
-        pathname: '/<%= name %>s'
+        pathname: '/<%= name %>'
       }))
     },
     onAdd () {
       dispatch({
-        type: '<%= name %>s/showModal',
+        type: '<%= name %>/showModal',
         payload: {
           modalType: 'create'
         }
       })
     },
     switchIsMotion () {
-      dispatch({type: '<%= name %>s/switchIsMotion'})
+      dispatch({type: '<%= name %>/switchIsMotion'})
     }
   }
 
@@ -99,10 +99,10 @@ function <%= name[0].toUpperCase() + name.slice(1) %>s ({ location, dispatch, <%
   )
 }
 
-<%= name[0].toUpperCase() + name.slice(1) %>s.propTypes = {
-  <%= name %>s: PropTypes.object,
+<%= name[0].toUpperCase() + name.slice(1) %>.propTypes = {
+  <%= name %>: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func
 }
 
-export default connect(({<%= name %>s}) => ({<%= name %>s}))(<%= name[0].toUpperCase() + name.slice(1) %>s)
+export default connect(({<%= name %>}) => ({<%= name %>}))(<%= name[0].toUpperCase() + name.slice(1) %>)
