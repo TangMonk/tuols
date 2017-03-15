@@ -131,7 +131,7 @@ async function getList(request, reply){
   delete query_payload.limit
   delete query_payload.offset
   const total = await models.<%= name %>s.count(query_payload)
-  reply({data, page: {total: , current: request.query.page, pageSize: request.query.pageSize}})
+  reply({data, page: {total: total, current: request.query.page, pageSize: request.query.pageSize}})
 }
 
 async function get(request, reply) {
