@@ -29,16 +29,17 @@ module.exports = class extends Generator {
 
     const attributes = this.options['attributes'].split(',').map(o => {
       let [column, type] = o.split(':')
-      if(type === 'integer'){
-        type = 'number().integer().optional(),'
-      }else if(type === 'float'){
-        type = 'number().precision(2).optional(),'
-      }else if(type === 'boolean'){
-        type = 'boolean().optional(),'
-      }
-      else{
-        type = `string().optional(),`
-      }
+      // if(type === 'integer'){
+      //   type = 'number().integer().optional(),'
+      // }else if(type === 'float'){
+      //   type = 'number().precision(2).optional(),'
+      // }else if(type === 'boolean'){
+      //   type = 'boolean().optional(),'
+      // }
+      // else{
+      //   type = `string().optional(),`
+      // }
+      type = `any().optional(),`
       return [column, type]
     })
     const name = this.options['name']
