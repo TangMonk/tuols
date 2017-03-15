@@ -35,9 +35,9 @@ module.exports = class extends Generator {
     const name = this.options['name']
     mkdirp.sync(`admin/src/components/${this.options['name']}`)
 
-    this.fs.copyTpl(Path.join(source, 'admin/components/'), Path.join(path, `admin/src/components/${this.options['name']}s/`), {attributes, name});
-    this.fs.copyTpl(Path.join(source, 'admin/models/model.js'), Path.join(path, `admin/src/models/${this.options['name']}s.js`), {attributes, name});
-    this.fs.copyTpl(Path.join(source, 'admin/routes/route.js'), Path.join(path, `admin/src/routes/${this.options['name']}s.js`), {attributes, name});
-    this.fs.copyTpl(Path.join(source, 'admin/services/service.js'), Path.join(path, `admin/src/services/${this.options['name']}s.js`), {attributes, name});
+    this.fs.copyTpl(Path.join(source, 'admin/components/'), Path.join(path, `src/components/${this.options['name']}/`), {attributes, name});
+    this.fs.copyTpl(Path.join(source, 'admin/models/model.js'), Path.join(path, `src/models/${this.options['name']}.js`), {attributes, name});
+    this.fs.copyTpl(Path.join(source, 'admin/routes/route.js'), Path.join(path, `src/routes/${this.options['name']}.js`), {attributes, name});
+    this.fs.copyTpl(Path.join(source, 'admin/services/service.js'), Path.join(path, `src/services/${this.options['name']}.js`), {attributes, name});
   }
 };

@@ -10,8 +10,6 @@ const Joi = require('joi');
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
-
-    this.config.save()
   }
 
   async prompting(){

@@ -49,6 +49,6 @@ module.exports = class extends Generator {
       shell.exec(`./node_modules/.bin/sequelize model:create --name ${this.options['name']} --attributes ${this.options['attributes']}`)
     }
 
-    this.fs.copyTpl(Path.join(source, 'curd.js'), Path.join(path, `api/server/api/admin/${this.options['name']}s.js`), {attributes, name}, {}, {globOptions: {dot: true}});
+    this.fs.copyTpl(Path.join(source, 'curd.js'), Path.join(path, `server/api/admin/${this.options['name']}.js`), {attributes, name}, {}, {globOptions: {dot: true}});
   }
 };
