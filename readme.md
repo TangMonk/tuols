@@ -1,4 +1,4 @@
-# Productive generator for Node.js CRUD application, make CRUD happy and fun!
+# ant design generators for productive
 
 ## install
 
